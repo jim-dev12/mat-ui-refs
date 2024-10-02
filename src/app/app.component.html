@@ -1,0 +1,21 @@
+
+
+@for (task of tasks(); track task; let i = $index) {
+
+  <mat-checkbox class="example-margin" [checked]="task.completed" [indeterminate]="partiallyComplete(task)()"
+    (change)="update($event.checked, task, true)">
+
+    {{task.name }} {{task.completed}}
+  </mat-checkbox>
+  @for (subtask of task.subtasks; track subtask; let i = $index) {
+
+  <mat-checkbox [checked]="subtask.completed" (change)="update($event.checked, subtask, false)" class="ps-4 border border-top w-100">
+
+    {{subtask.name}}
+  </mat-checkbox>
+
+  }
+}
+
+<button (click)="save()">save</button>
+
